@@ -1,9 +1,17 @@
 import {useState} from "react";
 import { SafeAreaView, StyleSheet, TextInput } from "react-native";
+import {Text, TouchableOpacity, View } from "react-native";
+
+
+
+
+
 
 const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [oneTimePassword, setOneTimePassword] = useState(null);
+  const [count, setCount] = useState(0);
+  const onPress = () => setCount(prevCount => prevCount + 1);
 
   return (
     <SafeAreaView style={styles.mainView}>
@@ -12,18 +20,33 @@ const Login = () => {
         onChangeText={setPhoneNumber}
         value={phoneNumber}
         placeholder = "314-555-6234"
+        placeholderTextColor = '#4251f5'
+
       />
       <TextInput
         style={styles.input}
         onChangeText={setOneTimePassword}
         value={oneTimePassword}
         placeholder="1234"
+        placeholderTextColor = '#4251F5'
         keyboardType="numeric"
         secureTextEntry = {true}
       />
+       <TouchableOpacity
+        style={styles.button}
+        onPress={()=>console.log('Login button was clicked')}
+      >
+        <Text>Login</Text>
+      </TouchableOpacity>
+      
+
     </SafeAreaView>
   );
 };
+
+
+
+
 
 const styles = StyleSheet.create({
   input: {
@@ -34,6 +57,21 @@ const styles = StyleSheet.create({
   },
   mainView:{
     marginTop:100
+  }
+  ,
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    paddingHorizontal: 10
+  },
+  button: {
+    alignItems: "center",
+    backgroundColor: "#DDDDDD",
+    padding: 10
+  },
+  countContainer: {
+    alignItems: "center",
+    padding: 10
   }
 
 });
