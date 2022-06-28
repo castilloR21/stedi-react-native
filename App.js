@@ -16,8 +16,8 @@ export default function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   
 
-  if (userLoggedIn){
-  return (
+if (userLoggedIn)
+return (
     <NavigationContainer>
       <Tab.Navigator
         initialRouteName='Home'
@@ -59,12 +59,12 @@ export default function App() {
   );
 
   
-} else {
+else {
 
 
-return(
-  <Login/>
-)
+  return(
+    <Login setUserLoggedIn={setUserLoggedIn}/>
+  )
 }
 }
 
