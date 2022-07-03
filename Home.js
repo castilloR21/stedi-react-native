@@ -7,10 +7,12 @@ import Bar  from './Bar.js';
 const Home = () => {
   return (
     <View>
-      <Bar loggedInUser="Ryan"/>
+      <Bar loggedInUser= "sroger"/>
       <Icons />
     </View>
   );
 };
+
+
 
 export default Home;
