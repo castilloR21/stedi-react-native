@@ -8,6 +8,7 @@ import Home from './Home.js';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { clickProps } from 'react-native-web/dist/cjs/modules/forwardedProps/index.js';
 
 // import Icons from "./Icons";
 const Tab = createMaterialBottomTabNavigator();
@@ -26,7 +27,8 @@ return (
       >
         <Tab.Screen
           name='Home'
-          component={Home}
+          children={()=><Home loggedInUser= ''/>}
+          // component={Home}
           options={{
             tabBarLabel: 'Home',
             tabBarIcon: ({ color }) => (

@@ -14,8 +14,11 @@ const sendText= async (phoneNumber)=>{
 
 }
 
+
+
+
+
 const getToken = async ({phoneNumber, oneTimePassword, setUserLoggedIn}) => {
-  setUserLoggedIn(true)
 
   const tokenResponse = await fetch('https://dev.stedi.me/twofactorlogin', {
     method: 'POST',
@@ -32,7 +35,12 @@ const getToken = async ({phoneNumber, oneTimePassword, setUserLoggedIn}) => {
   }
 
   const tokenResponseString = await tokenResponse.text();
+  console.log("Token",tokenResponseString)
   
+  const getUsername = await fetch('https://dev.stedi.me/validate/'+tokenResponseString)
+ 
+  const getUserString = await getUsername.text();
+  console.log("Username", getUserString)
 
 }
 
