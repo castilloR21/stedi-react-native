@@ -18,7 +18,7 @@ const sendText= async (phoneNumber)=>{
 
 
 
-const getToken = async ({phoneNumber, oneTimePassword, setUserLoggedIn}) => {
+const getToken = async ({phoneNumber, oneTimePassword, setUserLoggedIn, setUserName}) => {
 
   const tokenResponse = await fetch('https://dev.stedi.me/twofactorlogin', {
     method: 'POST',
@@ -37,10 +37,17 @@ const getToken = async ({phoneNumber, oneTimePassword, setUserLoggedIn}) => {
   const tokenResponseString = await tokenResponse.text();
   console.log("Token",tokenResponseString)
   
-  const getUsername = await fetch('https://dev.stedi.me/validate/'+tokenResponseString)
+  
+  const getUsername = await fetch('https://dev.stedi.me/validate/'+tokenResponseString);
  
   const getUserString = await getUsername.text();
+
   console.log("Username", getUserString)
+
+  setUserName(getUserString);
+
+
+  
 
 }
 
@@ -86,7 +93,7 @@ const Login = (props) => {
       <TouchableOpacity
       style={styles.button}
       onPress={()=>{
-        getToken({phoneNumber, oneTimePassword, setUserLoggedIn:props.setUserLoggedIn});
+        getToken({phoneNumber, oneTimePassword, setUserLoggedIn:props.setUserLoggedIn, setUserName:props.setUserName});
       }}
       >
         <Text>Login</Text>
